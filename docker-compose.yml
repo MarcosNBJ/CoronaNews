@@ -2,8 +2,9 @@ version: '3.5'
 services:
     web:
         build: .
-        command: [sh, -c, "pip install -r requirements.txt && python app.py"]
+        command: [sh, -c, "pip install -r requirements.txt && python app.py & scrapyrt -i 0.0.0.0 -p 9080"]
         ports:
+            - "9080:9080"
             - "5000:5000"
         volumes:
             - .:/code
