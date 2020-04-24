@@ -97,4 +97,6 @@ from shutil import which
 SELENIUM_DRIVER_NAME = 'chrome'
 SELENIUM_DRIVER_EXECUTABLE_PATH = which('chromedriver')
 # '--headless' if using chrome instead of firefox
+# SELENIUM_DRIVER_ARGUMENTS = ['-headless',
+#                              "--window-size=1920,1080", '--no-sandbox']
 SELENIUM_DRIVER_ARGUMENTS = ['-headless', '--no-sandbox']

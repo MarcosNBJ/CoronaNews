@@ -2,7 +2,7 @@
 
 import scrapy
 from scrapy.loader import ItemLoader
-from ..items import CoronaNewsItem
+from ..items import G1Item
 
 
 class G1Spider(scrapy.Spider):
@@ -14,7 +14,7 @@ class G1Spider(scrapy.Spider):
         news = response.xpath(
             ".//li[@class='widget widget--card widget--info']")
         for new in news:
-            loader = ItemLoader(item=CoronaNewsItem(),
+            loader = ItemLoader(item=G1Item(),
                                 selector=new, response=response)
             loader.add_xpath(
                 "title", ".//div/a/div[@class='widget--info__title product-color ']/text()")
