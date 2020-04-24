@@ -6,9 +6,12 @@
 # https://docs.scrapy.org/en/latest/topics/items.html
 
 import scrapy
+from scrapy.loader.processors import TakeFirst, MapCompose
 
 
 class CoronaNewsItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+
+    title = scrapy.Field(input_processor=MapCompose(
+        str.strip), output_processor=TakeFirst())
+
+    thumbnail_url = scrapy.Field(output_processor=TakeFirst())

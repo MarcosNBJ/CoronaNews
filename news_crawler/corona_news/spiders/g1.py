@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import scrapy
+from scrapy.loader import ItemLoader
+from ..items import CoronaNewsItem
 
 
 class G1Spider(scrapy.Spider):
@@ -12,15 +14,15 @@ class G1Spider(scrapy.Spider):
         news = response.xpath(
             ".//li[@class='widget widget--card widget--info']")
         for new in news:
-            title = new.xpath(
-                ".//div/a/div[@class='widget--info__title product-color ']/text()").get()
-            thumbnail = new.xpath(
-                "div[@class='widget--info__media-container ']/a/img/@src").get()
+            loader = ItemLoader(item=CoronaNewsItem(),
+                                selector=new, response=response)
+            loader.add_xpath(
+                "title", ".//div/a/div[@class='widget--info__title product-color ']/text()")
+            loader.add_xpath(
+                "thumbnail_url", "div[@class='widget--info__media-container ']/a/img/@src")
 
-            yield{
-                'title': title,
-                'thumbnail': thumbnail
-            }
+            yield loader.load_item()
+
         next_page = response.urljoin(response.xpath(
             "//div[@class='pagination widget']/a/@href").get())
         if next_page:
