@@ -18,32 +18,23 @@ class TerraSpider(scrapy.Spider):
 
     def parse(self, response):
 
-        products = response.xpath(
-            "//div[@class='gsc-expansionArea']/div[contains(@class, 'gsc-result')]")
-        for product in products:
-
-            loader = ItemLoader(item=TerraItem(),
-                                selector=product, response=response)
-            loader.add_xpath(
-                "title", ".//div[contains(@class, 'gs-result')]/div[@class='gsc-thumbnail-inside']/div/a//text()")
-            loader.add_xpath(
-                'thumbnail_url', ".//div/div[@class='gsc-table-result']/div/div/a/img/@src")
-            loader.add_xpath(
-                "source_url", ".//div[contains(@class, 'gs-result')]/div[@class='gsc-thumbnail-inside']/div/a/@href")
-            yield loader.load_item()
-
         driver = response.request.meta["driver"]
 
-        for i in range(2, 11):
+        for i in range(1, 11):
 
-            driver.execute_script(
-                "window.scrollTo(0, document.body.scrollHeight);")
-            driver.find_element_by_xpath(
-                f'//div[3]/div[1]/div/div/div/div[5]/div[2]/div/div/div[2]/div/div[{i}]').click()
-            time.sleep(1)
-            s = scrapy.Selector(text=driver.page_source)
-            products = s.xpath(
-                "//div[@class='gsc-expansionArea']/div[contains(@class, 'gsc-result')]")
+            if i == 1:
+                products = response.xpath(
+                    "//div[@class='gsc-expansionArea']/div[contains(@class, 'gsc-result')]")
+            else:
+                driver.execute_script(
+                    "window.scrollTo(0, document.body.scrollHeight);")
+                driver.find_element_by_xpath(
+                    f'//div[3]/div[1]/div/div/div/div[5]/div[2]/div/div/div[2]/div/div[{i}]').click()
+                time.sleep(1)
+                s = scrapy.Selector(text=driver.page_source)
+                products = s.xpath(
+                    "//div[@class='gsc-expansionArea']/div[contains(@class, 'gsc-result')]")
+
             for product in products:
                 loader = ItemLoader(item=TerraItem(),
                                     selector=product, response=response)
@@ -53,4 +44,4 @@ class TerraSpider(scrapy.Spider):
                     'thumbnail_url', ".//div/div[@class='gsc-table-result']/div/div/a/img/@src")
                 loader.add_xpath(
                     "source_url", ".//div[contains(@class, 'gs-result')]/div[@class='gsc-thumbnail-inside']/div/a/@href")
-            yield loader.load_item()
+                yield loader.load_item()
