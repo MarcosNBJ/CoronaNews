@@ -15,9 +15,11 @@ class G1Item(scrapy.Item):
         str.strip), output_processor=TakeFirst())
 
     thumbnail_url = scrapy.Field(output_processor=TakeFirst())
+    source_url = scrapy.Field(output_processor=TakeFirst())
 
 
 class TerraItem(scrapy.Item):
 
     title = scrapy.Field(output_processor=Join())
     thumbnail_url = scrapy.Field(output_processor=TakeFirst())
+    source_url = scrapy.Field(output_processor=TakeFirst())

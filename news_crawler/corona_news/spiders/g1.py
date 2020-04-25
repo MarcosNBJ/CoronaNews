@@ -20,6 +20,9 @@ class G1Spider(scrapy.Spider):
                 "title", ".//div/a/div[@class='widget--info__title product-color ']/text()")
             loader.add_xpath(
                 "thumbnail_url", "div[@class='widget--info__media-container ']/a/img/@src")
+            loader.add_xpath(
+                "source_url", ".//div/a/@href"
+            )
 
             yield loader.load_item()
 

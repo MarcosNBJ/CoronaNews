@@ -28,7 +28,8 @@ class TerraSpider(scrapy.Spider):
                 "title", ".//div[contains(@class, 'gs-result')]/div[@class='gsc-thumbnail-inside']/div/a//text()")
             loader.add_xpath(
                 'thumbnail_url', ".//div/div[@class='gsc-table-result']/div/div/a/img/@src")
-
+            loader.add_xpath(
+                "source_url", ".//div[contains(@class, 'gs-result')]/div[@class='gsc-thumbnail-inside']/div/a/@href")
             yield loader.load_item()
 
         driver = response.request.meta["driver"]
@@ -50,4 +51,6 @@ class TerraSpider(scrapy.Spider):
                     "title", ".//div[contains(@class, 'gs-result')]/div[@class='gsc-thumbnail-inside']/div/a//text()")
                 loader.add_xpath(
                     'thumbnail_url', ".//div/div[@class='gsc-table-result']/div/div/a/img/@src")
-                yield loader.load_item()
+                loader.add_xpath(
+                    "source_url", ".//div[contains(@class, 'gs-result')]/div[@class='gsc-thumbnail-inside']/div/a/@href")
+            yield loader.load_item()
