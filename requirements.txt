@@ -2,3 +2,4 @@ Flask
 scrapy
 scrapyrt
 scrapy-selenium
+requests
