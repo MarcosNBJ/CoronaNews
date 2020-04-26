@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
     <title>Corona Notícias</title>
+    {{ bootstrap.load_css() }}
 </head>
 
 <body>
@@ -19,7 +19,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/MarcosNBJ/CoronaNews">GitHub</a>
                 </li>
             </ul>
         </div>
@@ -32,7 +35,17 @@
                 Brasil</p>
             <hr class="my-4">
             <p>Se quiser separar por região basta clicar no botão abaixo</p>
-            <a class="btn btn-primary btn-lg" href="" role="button">Região</a>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Região
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    {% for region in regions %}
+                    <a class="dropdown-item" href="/{{region}}">{{region}}</a>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 
@@ -58,6 +71,7 @@
     </div>
 
 
+    {{ bootstrap.load_js() }}
 
 </body>
 
