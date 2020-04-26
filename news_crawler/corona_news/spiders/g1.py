@@ -8,7 +8,9 @@ from ..items import G1Item
 class G1Spider(scrapy.Spider):
     name = 'g1'
     allowed_domains = ['g1.globo.com']
-    start_urls = ['https://g1.globo.com/busca/?q=coronavirus+df&page=1']
+    region = ''
+    start_urls = [
+        f'https://g1.globo.com/busca/?q=coronavirus+{self.region}&page=1']
 
     def parse(self, response):
         news = response.xpath(

@@ -8,10 +8,11 @@ from ..items import TerraItem
 
 class TerraSpider(scrapy.Spider):
     name = 'terra'
+    region = ''
 
     def start_requests(self):
         yield SeleniumRequest(
-            url='https://www.terra.com.br/busca/?q=coronavirus%20df',
+            url=f'https://www.terra.com.br/busca/?q=coronavirus%20{self.region}',
             wait_time=3,
             callback=self.parse
         )
