@@ -9,8 +9,10 @@ class G1Spider(scrapy.Spider):
     name = 'g1'
     allowed_domains = ['g1.globo.com']
     region = ''
-    start_urls = [
-        f'https://g1.globo.com/busca/?q=coronavirus+{self.region}&page=1']
+
+    def start_requests(self):
+        yield scrapy.Request(url=f'https://g1.globo.com/busca/?q=coronavirus+{self.region}&page=1',
+                             callback=self.parse)
 
     def parse(self, response):
         news = response.xpath(
