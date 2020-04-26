@@ -1,5 +1,5 @@
 Flask
 scrapy
-scrapyrt
+git+https://github.com/scrapinghub/scrapyrt@pass-arguments-to-spider#egg=scrapyrt
 scrapy-selenium
 requests
