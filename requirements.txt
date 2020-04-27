@@ -4,3 +4,4 @@ git+https://github.com/scrapinghub/scrapyrt@pass-arguments-to-spider#egg=scrapyr
 scrapy-selenium
 requests
 bootstrap-flask
+coverage

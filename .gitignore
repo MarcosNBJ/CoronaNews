@@ -1,3 +1,6 @@
 __pycache__/
 logs/
 .vscode
+htmlcov/
+/coverage.data
+/coverage/
