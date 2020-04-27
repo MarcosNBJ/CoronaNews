@@ -15,6 +15,13 @@ class G1Spider(scrapy.Spider):
                              callback=self.parse)
 
     def parse(self, response):
+        """This function gathers title, thumbnail, and source url of all news found by the search.
+
+        @url https://g1.globo.com/busca/?q=coronavirus+DF&page=1
+        @returns items 1
+        @scrapes title thumbnail_url source_url
+        """
+
         news = response.xpath(
             ".//li[@class='widget widget--card widget--info']")
         for new in news:
