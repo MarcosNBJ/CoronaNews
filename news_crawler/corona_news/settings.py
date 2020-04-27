@@ -91,6 +91,8 @@ AUTOTHROTTLE_START_DELAY = 5
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 CLOSESPIDER_ITEMCOUNT = 30
+HTTPCACHE_ENABLE = True
+HTTPCACHE_EXPIRATION_SECS = 3600
 
 from shutil import which
 
