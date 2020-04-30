@@ -5,6 +5,9 @@ Expandable project to scrap the most recent news about Coronavirus from various 
 This is built using [Scrapy](https://github.com/scrapy/scrapy) for scrapping and [Selenium](https://github.com/SeleniumHQ/selenium) for handling websites with javascript. There's a simple frontend built with Flask just to show how the news can be presented but anyone can also use the [ScrapyRT](https://github.com/scrapinghub/scrapyrt) endpoint to directly acess the JSON with the scrapped items and use it as desired.
 
 ## How to use it locally:
+
+Soon, there will also be a deploy of this application running on Amazon's Elastic Container Service, for which the URL will be available here. Meanwhile, you can run the container locally 
+
 ```
 docker-compose up
 ```
