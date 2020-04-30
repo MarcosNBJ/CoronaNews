@@ -27,7 +27,7 @@
             </ul>
         </div>
     </nav>
-
+    <!-- Jumbotron containing simple information and dropdown-menu containing all brazillian states for the user to select-->
     <div class="container mt-4">
         <div class="jumbotron" style="text-align: center;">
             <h1 class="display-4">Noticias mais recentes sobre o Coronavírus no Brasil</h1>
@@ -49,6 +49,7 @@
         </div>
     </div>
 
+    <!-- Rows of three cards each -->
     <div class="container">
         {% for new in news %}
         {% if loop.index0 % 3 == 0 %}
