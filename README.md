@@ -8,9 +8,9 @@ This is built using [Scrapy](https://github.com/scrapy/scrapy) for scrapping and
 ```
 docker-compose up
 ```
-With the container up the frond-end will be accessible through localhost port 5000. 
+With the container up the frond-end will be accessible through localhost port 5000. If you want to change the URL of ScrapyRT's endpoint, you'll also have to change the value of the environment variable "SCRAPY_URL". 
 
-If you desire to get just the scrapped JSON from ScrapyRT's endpoint, which will be at port 9080/crawl.json, the following arguments must be included in the request:
+If you desire to get just the scrapped JSON from ScrapyRT's endpoint, which by default will be at port 9080/crawl.json, the following arguments must be included in the request:
 * start_requests=true
 * spider_name=\<desired news provider>
 * region=\<desired region> (Optional)
