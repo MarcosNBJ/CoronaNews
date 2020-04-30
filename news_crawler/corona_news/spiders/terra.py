@@ -7,25 +7,37 @@ from ..items import TerraItem
 
 
 class TerraSpider(scrapy.Spider):
+    '''
+    Spider responsible for scrapping data from Terra's site
+    '''
+
     name = 'terra'
     region = ''
 
     def start_requests(self):
         yield SeleniumRequest(
+
+            # choosing region by parameter
             url=f'https://www.terra.com.br/busca/?q=coronavirus%20{self.region}',
             wait_time=3,
             callback=self.parse
         )
 
     def parse(self, response):
+        """This function gathers title, thumbnail, and source url of all news found by the search.
 
+        """
         driver = response.request.meta["driver"]
 
+        # loop for pagination handling
         for i in range(1, 11):
 
+            # on the first page we can execute the xpath directly on the response, without scrolling
             if i == 1:
                 products = response.xpath(
                     "//div[@class='gsc-expansionArea']/div[contains(@class, 'gsc-result')]")
+
+            # else, we need to scroll down and click on next page, aplying xpath on the selenium driver
             else:
                 driver.execute_script(
                     "window.scrollTo(0, document.body.scrollHeight);")

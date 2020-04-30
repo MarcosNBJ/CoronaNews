@@ -8,6 +8,7 @@
 
 class CoronaNewsPipeline(object):
     def process_item(self, item, spider):
+        # Setting default thumbnail images for when the scrapping's response does not return valid image url
         if spider.name == 'g1':
             item.setdefault(
                 'thumbnail_url', 'https://s.glbimg.com/jo/g1/static/live/imagens/img_facebook.png')

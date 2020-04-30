@@ -6,11 +6,16 @@ from ..items import G1Item
 
 
 class G1Spider(scrapy.Spider):
+    '''
+    Spider responsible for scrapping data from Globo's G1 site
+    '''
     name = 'g1'
     allowed_domains = ['g1.globo.com']
     region = ''
 
     def start_requests(self):
+
+        # choosing region by received parammeter
         yield scrapy.Request(url=f'https://g1.globo.com/busca/?q=coronavirus+{self.region}&page=1',
                              callback=self.parse)
 
@@ -37,6 +42,7 @@ class G1Spider(scrapy.Spider):
 
             yield loader.load_item()
 
+        # pagination handling
         next_page = response.urljoin(response.xpath(
             "//div[@class='pagination widget']/a/@href").get())
         if next_page:
