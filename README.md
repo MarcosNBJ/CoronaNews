@@ -17,7 +17,7 @@ If you desire to get just the scrapped JSON from ScrapyRT's endpoint, which by d
 * start_requests=true
 * spider_name=\<desired news provider>
 * region=\<desired region> (Optional)
-
+ 
 Example:
 ```
 http://localhost:9080/crawl.json?start_requests=true&spider_name=g1&region=SP
